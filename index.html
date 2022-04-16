@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fetch API data</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>latitude: <span id="lat"></span></p>
+    <p>longitude: <span id="long"></span></p>
+    <script>
+        const ISSAPIURL = 'https://api.wheretheiss.at/v1/satellites/25544'
+        async function getData() {
+            const response = await fetch(ISSAPIURL)
+            const data = await response.json();
+            const {latitude, longitude} = data;
+            document.getElementById('lat').innerText = latitude;
+            document.getElementById('long').innerText = longitude;
+            console.log(latitude, longitude)
+        }
+        getData();
+        setInterval(getData, 5000);
+    </script>
+</body>
+
+</html>
